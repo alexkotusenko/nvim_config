@@ -26,18 +26,31 @@ vim.opt.rtp:prepend(lazypath)
 
 -- Define and load plugins
 require("lazy").setup({
-        spec = {
-          -- Import the harpoon plugin configuration
-          {
-            "ThePrimeagen/harpoon",
-            branch = "harpoon2",
-            dependencies = { "nvim-lua/plenary.nvim" },
-          },
-        },
+  spec = {
+    -- import plugins here
+    { -- HARPOON
+      "ThePrimeagen/harpoon",
+      branch = "harpoon2",
+      dependencies = { "nvim-lua/plenary.nvim" },
+    },
+    { -- SONOKAI THEME
+      'sainnhe/sonokai',
+      lazy = false,
+      priority = 1000,
+      config = function()
+        -- Optionally configure and load the colorscheme
+        -- directly inside the plugin declaration.
+        vim.g.sonokai_enable_italic = true
+        vim.cmd.colorscheme('sonokai')
+      end
+    }
+  },
 }, {})
 
 -- Import key mappings from keymaps.lua
-require("keymaps")
+-- you need to do this for the file to be found from any folder, not just ~/.config/nvim
+local keymaps_path = vim.fn.stdpath("config") .. "/keymaps.lua"
+dofile(keymaps_path)
 
 -- Key mappings
 vim.keymap.set("n", "<leader>e", ":Lexplore<CR>", { noremap = true }) -- Open file explorer
