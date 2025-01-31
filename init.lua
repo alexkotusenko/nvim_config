@@ -52,6 +52,3 @@ require("lazy").setup({
 local keymaps_path = vim.fn.stdpath("config") .. "/keymaps.lua"
 dofile(keymaps_path)
 
--- Key mappings
-vim.keymap.set("n", "<leader>e", ":Lexplore<CR>", { noremap = true }) -- Open file explorer
-
