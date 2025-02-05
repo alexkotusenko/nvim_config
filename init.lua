@@ -5,7 +5,7 @@ vim.g.maplocalleader = " "
 -- Basic settings
 vim.o.number = true -- Show line numbers
 vim.o.relativenumber = false -- Show relative line numbers
-vim.o.expandtab = true -- Use spaces instead of tabs
+vim.o.expandtab = false -- Use spaces instead of tabs
 vim.o.shiftwidth = 2 -- Size of an indent
 vim.o.tabstop = 2 -- Number of spaces tabs count for
 vim.o.softtabstop = 2 -- Number of spaces in tab when editing
@@ -25,14 +25,11 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 -- Define and load plugins
+local harpoon_spec = dofile(vim.fn.stdpath("config") .. "/harpoon.lua")
+
 require("lazy").setup({
   spec = {
-    -- import plugins here
-    { -- HARPOON
-      "ThePrimeagen/harpoon",
-      branch = "harpoon2",
-      dependencies = { "nvim-lua/plenary.nvim" },
-    },
+    harpoon_spec,
     { -- SONOKAI THEME
       'sainnhe/sonokai',
       lazy = false,
@@ -43,7 +40,9 @@ require("lazy").setup({
         vim.g.sonokai_enable_italic = true
         vim.cmd.colorscheme('sonokai')
       end
-    }
+    },
+
+
   },
 }, {})
 

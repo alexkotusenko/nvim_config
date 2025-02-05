@@ -29,3 +29,4 @@ remap("n", "<leader>d", function()
     vim.cmd("normal! G") -- Jump to the end of the file
     vim.cmd("normal! o") -- Create a new line and enter insert mode
 end, { noremap = true, silent = true })
+
