@@ -22,6 +22,14 @@ remap("n", "<leader>cc", function()
         vim.notify("All buffers unpinned!", 1)
 end)
 
+-- switch tabs
+remap("n", "\\[", ":tabprev<CR>", { noremap = true })
+remap("n", "\\]", ":tabnext<CR>", { noremap = true })
+remap("n", "\\\\", ":tabnew<CR>", { noremap = true })
+
+-- `G` always goes back to the very last symbol
+remap("n", "G", "G$")
+
 -- dump
 remap("n", "<leader>d", function()
     vim.cmd("tabnew") -- Create a new buffer
@@ -29,4 +37,3 @@ remap("n", "<leader>d", function()
     vim.cmd("normal! G") -- Jump to the end of the file
     vim.cmd("normal! o") -- Create a new line and enter insert mode
 end, { noremap = true, silent = true })
-

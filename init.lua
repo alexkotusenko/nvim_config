@@ -50,4 +50,3 @@ require("lazy").setup({
 -- you need to do this for the file to be found from any folder, not just ~/.config/nvim
 local keymaps_path = vim.fn.stdpath("config") .. "/keymaps.lua"
 dofile(keymaps_path)
-
