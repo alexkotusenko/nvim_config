@@ -1,3 +1,5 @@
+-- print("[CONFIG] Loading init.lua...") -- DEBUG
+
 -- Set leader key
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
@@ -9,6 +11,7 @@ vim.o.expandtab = false -- Use spaces instead of tabs
 vim.o.shiftwidth = 2 -- Size of an indent
 vim.o.tabstop = 2 -- Number of spaces tabs count for
 vim.o.softtabstop = 2 -- Number of spaces in tab when editing
+
 
 -- Initialize LazyVim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -23,6 +26,21 @@ if not vim.loop.fs_stat(lazypath) then
         })
 end
 vim.opt.rtp:prepend(lazypath)
+
+-- harpoon save fn
+local function load_harpoon_list()
+    local file = io.open(harpoon_file, "r")
+    if file then
+        for line in file:lines() do
+            harpoon:list():append(line)
+        end
+        file:close()
+        print("Harpoon list loaded successfully.")
+    else
+        print("Error: Could not open file for reading.")
+    end
+end
+
 
 -- Define and load plugins
 local harpoon_spec = dofile(vim.fn.stdpath("config") .. "/harpoon.lua")
@@ -50,3 +68,4 @@ require("lazy").setup({
 -- you need to do this for the file to be found from any folder, not just ~/.config/nvim
 local keymaps_path = vim.fn.stdpath("config") .. "/keymaps.lua"
 dofile(keymaps_path)
+

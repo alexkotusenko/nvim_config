@@ -30,6 +30,7 @@ remap("n", "\\\\", ":tabnew<CR>", { noremap = true })
 -- `G` always goes back to the very last symbol
 remap("n", "G", "G$")
 
+
 -- dump
 remap("n", "<leader>d", function()
     vim.cmd("tabnew") -- Create a new buffer

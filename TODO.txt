@@ -1,0 +1,5 @@
+
+7 apr 2025
+
+[ ] figure out the VimEnter event mess - how can i call some function as vim gets loaded?
+	- this is needed for the harpoon load function in ./harpoon_save.lua
