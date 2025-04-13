@@ -49,12 +49,13 @@ local treesitter_spec = dofile(vim.fn.stdpath("config") .. "/treesitter.lua")
 
 
 
-
 require("lazy").setup({
   spec = {
     harpoon_spec,
 		complete_spec,
 		treesitter_spec,
+		{ 'neovim/nvim-lspconfig' },
+		{ "williamboman/mason.nvim" },
 		{ 'sainnhe/gruvbox-material' }, -- gruvbox-material
 		{ 'bartekjaszczak/finale-nvim' }, -- finale-nvim
 		{ 'rebelot/kanagawa.nvim' },
@@ -75,9 +76,27 @@ require("lazy").setup({
   },
 }, {})
 
+require("mason").setup()
+
 -- Import key mappings from keymaps.lua
 -- you need to do this for the file to be found from any folder, not just ~/.config/nvim
 local keymaps_path = vim.fn.stdpath("config") .. "/keymaps.lua"
 dofile(keymaps_path)
 
+-- configure LSPs
+require('lspconfig').rust_analyzer.setup({
+  settings = {
+    ["rust-analyzer"] = {
+      diagnostics = {
+        enable = false, -- Disables error messages
+      },
+      imports = {
+        granularity = { group = "module" },
+        prefix = "self",
+      },
+    }
+  }
+})
+-- override LSP handler to avoid diagnostics
+vim.lsp.handlers["textDocument/publishDiagnostics"] = function() end
 
