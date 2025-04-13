@@ -45,9 +45,15 @@ end
 -- Define and load plugins
 local harpoon_spec = dofile(vim.fn.stdpath("config") .. "/harpoon.lua")
 
+local complete_spec = dofile(vim.fn.stdpath("config") .. "/complete.lua")
+
+
+
+
 require("lazy").setup({
   spec = {
     harpoon_spec,
+		complete_spec,
     { -- SONOKAI THEME
       'sainnhe/sonokai',
       lazy = false,
@@ -59,6 +65,7 @@ require("lazy").setup({
         vim.cmd.colorscheme('sonokai')
       end
     },
+
 
 
   },
