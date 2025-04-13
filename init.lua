@@ -44,8 +44,8 @@ end
 
 -- Define and load plugins
 local harpoon_spec = dofile(vim.fn.stdpath("config") .. "/harpoon.lua")
-
 local complete_spec = dofile(vim.fn.stdpath("config") .. "/complete.lua")
+local treesitter_spec = dofile(vim.fn.stdpath("config") .. "/treesitter.lua")
 
 
 
@@ -54,6 +54,7 @@ require("lazy").setup({
   spec = {
     harpoon_spec,
 		complete_spec,
+		treesitter_spec,
 		{ 'sainnhe/gruvbox-material' }, -- gruvbox-material
 		{ 'bartekjaszczak/finale-nvim' }, -- finale-nvim
 		{ 'rebelot/kanagawa.nvim' },
@@ -78,4 +79,5 @@ require("lazy").setup({
 -- you need to do this for the file to be found from any folder, not just ~/.config/nvim
 local keymaps_path = vim.fn.stdpath("config") .. "/keymaps.lua"
 dofile(keymaps_path)
+
 
