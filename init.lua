@@ -54,6 +54,9 @@ require("lazy").setup({
   spec = {
     harpoon_spec,
 		complete_spec,
+		{ 'sainnhe/gruvbox-material' }, -- gruvbox-material
+		{ 'bartekjaszczak/finale-nvim' }, -- finale-nvim
+		{ 'rebelot/kanagawa.nvim' },
     { -- SONOKAI THEME
       'sainnhe/sonokai',
       lazy = false,
@@ -62,7 +65,7 @@ require("lazy").setup({
         -- Optionally configure and load the colorscheme
         -- directly inside the plugin declaration.
         vim.g.sonokai_enable_italic = true
-        vim.cmd.colorscheme('sonokai')
+        vim.cmd.colorscheme('kanagawa-wave')
       end
     },
 

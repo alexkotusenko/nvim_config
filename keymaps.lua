@@ -30,6 +30,15 @@ remap("n", "\\\\", ":tabnew<CR>", { noremap = true })
 -- `G` always goes back to the very last symbol
 remap("n", "G", "G$")
 
+-- vsplit 
+remap("n", "<leader>v", function()
+	vim.cmd("vsplit") -- vsplit
+end, { noremap = true, silent = true })
+
+-- navigating tabs 
+remap("n", "<C-]>", ":wincmd l<CR>", {noremap=true})
+remap("n", "<C-[>", ":wincmd h<CR>", {noremap=true})
+
 
 -- dump
 remap("n", "<leader>d", function()
