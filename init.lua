@@ -46,7 +46,7 @@ end
 local harpoon_spec = dofile(vim.fn.stdpath("config") .. "/harpoon.lua")
 local complete_spec = dofile(vim.fn.stdpath("config") .. "/complete.lua")
 local treesitter_spec = dofile(vim.fn.stdpath("config") .. "/treesitter.lua")
-
+local which_key_spec = dofile(vim.fn.stdpath("config") .. "/which_key.lua")
 
 
 require("lazy").setup({
@@ -54,6 +54,7 @@ require("lazy").setup({
     harpoon_spec,
 		complete_spec,
 		treesitter_spec,
+		which_key_spec,
 		{ 'neovim/nvim-lspconfig' },
 		{ "williamboman/mason.nvim" },
 		{ 'sainnhe/gruvbox-material' }, -- gruvbox-material
@@ -84,7 +85,8 @@ local keymaps_path = vim.fn.stdpath("config") .. "/keymaps.lua"
 dofile(keymaps_path)
 
 -- configure LSPs
-require('lspconfig').rust_analyzer.setup({
+local lspconfig = require("lspconfig")
+lspconfig.rust_analyzer.setup({
   settings = {
     ["rust-analyzer"] = {
       diagnostics = {
@@ -97,6 +99,8 @@ require('lspconfig').rust_analyzer.setup({
     }
   }
 })
+
+
 -- override LSP handler to avoid diagnostics
 vim.lsp.handlers["textDocument/publishDiagnostics"] = function() end
 

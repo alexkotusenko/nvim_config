@@ -35,6 +35,11 @@ remap("n", "<leader>v", function()
 	vim.cmd("vsplit") -- vsplit
 end, { noremap = true, silent = true })
 
+-- no highlight
+remap("n", "<leader>h", function()
+	vim.cmd("nohlsearch")
+end, { noremap = true, silent = true })
+
 -- navigating tabs 
 remap("n", "<C-]>", ":wincmd l<CR>", {noremap=true})
 remap("n", "<C-[>", ":wincmd h<CR>", {noremap=true})
