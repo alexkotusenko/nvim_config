@@ -60,6 +60,9 @@ require("lazy").setup({
 		{ 'sainnhe/gruvbox-material' }, -- gruvbox-material
 		{ 'bartekjaszczak/finale-nvim' }, -- finale-nvim
 		{ 'rebelot/kanagawa.nvim' },
+		{ 'rose-pine/neovim' },
+		{ 'marko-cerovac/material.nvim' },
+		{ 'projekt0n/github-nvim-theme' },
     { -- SONOKAI THEME
       'sainnhe/sonokai',
       lazy = false,
@@ -68,7 +71,8 @@ require("lazy").setup({
         -- Optionally configure and load the colorscheme
         -- directly inside the plugin declaration.
         vim.g.sonokai_enable_italic = true
-        vim.cmd.colorscheme('kanagawa-wave')
+        -- vim.cmd.colorscheme('kanagawa-wave')
+				vim.cmd.colorscheme('rose-pine')
       end
     },
 
