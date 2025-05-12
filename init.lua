@@ -22,7 +22,7 @@ if not vim.loop.fs_stat(lazypath) then
                 "--filter=blob:none",
                 "https://github.com/folke/lazy.nvim.git",
                 "--branch=stable", -- latest stable release
-                lazypath,
+                lazypath
         })
 end
 vim.opt.rtp:prepend(lazypath)
@@ -55,6 +55,10 @@ require("lazy").setup({
 		complete_spec,
 		treesitter_spec,
 		which_key_spec,
+		{ -- telescope
+			'nvim-telescope/telescope.nvim', tag = '0.1.8',
+      dependencies = { 'nvim-lua/plenary.nvim' }
+		},
 		{ 'neovim/nvim-lspconfig' },
 		{ "williamboman/mason.nvim" },
 		{ 'sainnhe/gruvbox-material' }, -- gruvbox-material

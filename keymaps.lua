@@ -52,3 +52,18 @@ remap("n", "<leader>d", function()
     vim.cmd("normal! G") -- Jump to the end of the file
     vim.cmd("normal! o") -- Create a new line and enter insert mode
 end, { noremap = true, silent = true })
+
+
+-- search buffers
+remap("n", "sb", function()
+	require('telescope.builtin').buffers()
+end, { noremap = true, silent = true })
+
+
+-- Open file in new tab 
+remap("n", "sf", function() 
+	vim.cmd("tabnew")
+	require('telescope.builtin').find_files()
+	-- todo open it in a new tab
+end, { noremap = true, silent = true })
+
