@@ -67,3 +67,12 @@ remap("n", "sf", function()
 	-- todo open it in a new tab
 end, { noremap = true, silent = true })
 
+-- generate code with ai
+remap("n", "<leader>Ag", function()
+	vim.cmd("Ollama Generate_Code")
+end, { noremap = true, silent = true })
+
+-- modify code with ai
+remap("v", "m", function()
+	vim.cmd("Ollama Modify_Code")
+end, { noremap = true, silent = true })

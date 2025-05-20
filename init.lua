@@ -79,21 +79,21 @@ require("lazy").setup({
 },
 -- use the lua one instead
 -- { "github/copilot.vim" },
-{ "giuxtaposition/blink-cmp-copilot" },
+-- { "giuxtaposition/blink-cmp-copilot" },
 
-{
-  "zbirenbaum/copilot.lua",
-  cmd = "Copilot",
-  event = "InsertEnter",
-  config = function()
-    require("copilot").setup({})
-  end,
-  -- suggestion = {
-  --   keymap = {
-  --       accept = "<C-k>"
-  --   }
-  -- }
-},
+-- {
+--   "zbirenbaum/copilot.lua",
+--   cmd = "Copilot",
+--   event = "InsertEnter",
+--   config = function()
+--     require("copilot").setup({})
+--   end,
+--   -- suggestion = {
+--   --   keymap = {
+--   --       accept = "<C-k>"
+--   --   }
+--   -- }
+-- },
 {
   "nomnivore/ollama.nvim",
   dependencies = { "nvim-lua/plenary.nvim" },
@@ -215,10 +215,11 @@ lspconfig.rust_analyzer.setup({
 
 -- configure ollama
 require("ollama").setup({
-  model = "mistral", -- Choose your preferred model
+  model = "qwen2.5:latest", -- Choose your preferred model
   url = "http://127.0.0.1:11434", -- Ensure Ollama is running locally
   serve = {
-    on_start = true,
+    -- on_start = true,
+		on_start = false, -- maybe I should not serve it on start
     command = "ollama",
     args = { "serve" },
   },

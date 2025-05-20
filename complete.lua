@@ -51,6 +51,7 @@ return {
 			"path", 
 			"snippets", 
 			"buffer", 
+      -- "ollama"
 			-- "blink-copilot" 
 			}
 		}
