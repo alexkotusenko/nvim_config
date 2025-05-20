@@ -42,6 +42,18 @@ return {
     -- sources = {
     --   default = { 'lsp', 'path', 'snippets', 'buffer' },
     -- },
+		sources = {
+		-- where your completion thing gets its info from
+		-- so maybe a rust lsp
+		-- or some ai plugin
+			default = { 
+			"lsp", 
+			"path", 
+			"snippets", 
+			"buffer", 
+			-- "blink-copilot" 
+			}
+		}
 
     -- (Default) Rust fuzzy matcher for typo resistance and significantly better performance
     -- You may use a lua implementation instead by using `implementation = "lua"` or fallback to the lua implementation,
