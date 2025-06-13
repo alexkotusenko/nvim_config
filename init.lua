@@ -65,7 +65,13 @@ require("lazy").setup({
 		{ 'rebelot/kanagawa.nvim' },
 		{ 'rose-pine/neovim' },
 		{ 'marko-cerovac/material.nvim' },
+		{ 'tiagovla/tokyodark.nvim' },
+		{ 'sponkurtus2/angelic.nvim' },
+		{ 'bluz71/vim-moonfly-colors' }, -- amazing charcoal theme
+		{ 'ficcdaf/ashen.nvim' },
 		{ 'projekt0n/github-nvim-theme' },
+		{ 'tomasr/molokai' },
+		{ 'nvimdev/zephyr-nvim' },
     { -- SONOKAI THEME
       'sainnhe/sonokai',
       lazy = false,
@@ -76,7 +82,8 @@ require("lazy").setup({
         vim.g.sonokai_enable_italic = true
         -- vim.cmd.colorscheme('kanagawa-wave')
     end
-},
+		},
+		{ 'dylanaraps/wal.vim' }, -- for creating your own theme
 -- use the lua one instead
 -- { "github/copilot.vim" },
 -- { "giuxtaposition/blink-cmp-copilot" },
@@ -229,5 +236,10 @@ require("ollama").setup({
 vim.lsp.handlers["textDocument/publishDiagnostics"] = function() end
 
 -- set colorscheme
-vim.cmd.colorscheme("rose-pine")
+vim.cmd.colorscheme("molokai")
 
+-- proper wrapping
+vim.opt.wrap = true
+vim.opt.breakindent = true
+-- vim.opt.showbreak = "␣␣␣" -- Adds a visual indicator for wrapped lines
+vim.opt.linebreak = true -- Prevents breaking words in the middle
