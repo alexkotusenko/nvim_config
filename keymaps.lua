@@ -3,8 +3,11 @@ local harpoon = require("harpoon")
 local remap = vim.keymap.set
 
 -- open file explorer
-vim.keymap.set("n", "<leader>e", ":Lexplore<CR>", { noremap = true })
-vim.keymap.set("n", "sf", ":Lexplore<CR>", { noremap = true })
+-- local file_explorer_fn = ":Lexplore<CR>"
+-- local file_explorer_fn = ":Telescope find_files<CR>"
+vim.keymap.set("n", "<leader>e", function() 
+	require("telescope.builtin").find_files()
+end, { noremap = true })
 
 -- overrides lazy menu
 remap("n", "l", function()
@@ -41,8 +44,12 @@ remap("n", "<leader>h", function()
 end, { noremap = true, silent = true })
 
 -- navigating tabs 
+-- left
 remap("n", "<C-]>", ":wincmd l<CR>", {noremap=true})
+-- right
 remap("n", "<C-[>", ":wincmd h<CR>", {noremap=true})
+
+
 
 
 -- dump
@@ -66,6 +73,11 @@ remap("n", "sf", function()
 	require('telescope.builtin').find_files()
 	-- todo open it in a new tab
 end, { noremap = true, silent = true })
+
+-- See marks
+remap("n", "sm", function()
+	require("telescope.builtin").marks()
+end, {noremap = true, silent = true})
 
 -- generate code with ai
 remap("n", "<leader>Ag", function()

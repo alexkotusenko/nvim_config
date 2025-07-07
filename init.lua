@@ -72,6 +72,7 @@ require("lazy").setup({
 		{ 'projekt0n/github-nvim-theme' },
 		{ 'tomasr/molokai' },
 		{ 'nvimdev/zephyr-nvim' },
+		{ 'navarasu/onedark.nvim' },
     { -- SONOKAI THEME
       'sainnhe/sonokai',
       lazy = false,
@@ -236,7 +237,8 @@ require("ollama").setup({
 vim.lsp.handlers["textDocument/publishDiagnostics"] = function() end
 
 -- set colorscheme
-vim.cmd.colorscheme("molokai")
+-- alternatives: molokai, sonokai
+vim.cmd.colorscheme("sonokai")
 
 -- proper wrapping
 vim.opt.wrap = true
