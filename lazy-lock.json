@@ -18,6 +18,7 @@
   "onedark.nvim": { "branch": "master", "commit": "11de4da47f3e69cb70c3ae9816bd8af166cbe121" },
   "plenary.nvim": { "branch": "master", "commit": "857c5ac632080dba10aae49dba902ce3abf91b35" },
   "sonokai": { "branch": "master", "commit": "9679341d4141ed81376f2bdf5e69b78dc348d212" },
+  "telescope-tabs": { "branch": "master", "commit": "9ca0800d4e9c2610d5cac4d121cde0d9fbd89a64" },
   "telescope.nvim": { "branch": "master", "commit": "a0bbec21143c7bc5f8bb02e0005fa0b982edc026" },
   "tokyodark.nvim": { "branch": "master", "commit": "cc70a2fb809d5376f2bd8e5836f9bb3f5fb8ef43" },
   "vim-moonfly-colors": { "branch": "master", "commit": "ff822100c5d268e0db79e8e725cbd3ade3470de3" },

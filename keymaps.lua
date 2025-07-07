@@ -1,4 +1,4 @@
--- keymaps.lua
+
 local harpoon = require("harpoon")
 local remap = vim.keymap.set
 
@@ -64,20 +64,20 @@ end, { noremap = true, silent = true })
 -- search buffers
 remap("n", "sb", function()
 	require('telescope.builtin').buffers()
-end, { noremap = true, silent = true })
+end, { noremap = true, silent = true, desc = "Browse open buffers w/ Telescope"})
 
 
 -- Open file in new tab 
 remap("n", "sf", function() 
-	vim.cmd("tabnew")
+	-- vim.cmd("tabnew")
 	require('telescope.builtin').find_files()
 	-- todo open it in a new tab
-end, { noremap = true, silent = true })
+end, { noremap = true, silent = true, desc = "Load file into this buffer w/ Telescope"})
 
 -- See marks
 remap("n", "sm", function()
 	require("telescope.builtin").marks()
-end, {noremap = true, silent = true})
+end, {noremap = true, silent = true, desc = "Browse marks w/ Telescope" })
 
 -- generate code with ai
 remap("n", "<leader>Ag", function()
@@ -86,5 +86,10 @@ end, { noremap = true, silent = true })
 
 -- modify code with ai
 remap("v", "m", function()
-	vim.cmd("Ollama Modify_Code")
+im.cmd("Ollama Modify_Code")
 end, { noremap = true, silent = true })
+
+-- telescope tabs (experimental)
+remap("n", "st", function()
+	require('telescope-tabs').list_tabs()
+end, {noremap = true, silent = true, desc = "List open tabs in Telescope"})

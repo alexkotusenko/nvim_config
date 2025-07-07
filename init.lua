@@ -46,7 +46,8 @@ local harpoon_spec = dofile(vim.fn.stdpath("config") .. "/harpoon.lua")
 local complete_spec = dofile(vim.fn.stdpath("config") .. "/complete.lua")
 local treesitter_spec = dofile(vim.fn.stdpath("config") .. "/treesitter.lua")
 local which_key_spec = dofile(vim.fn.stdpath("config") .. "/which_key.lua")
-
+local telescope_tabs_spec = dofile(vim.fn.stdpath("config") .. "/telescope_tabs.lua")
+local telescope_spec = dofile(vim.fn.stdpath("config") .. "/telescope.lua")
 
 require("lazy").setup({
   spec = {
@@ -54,10 +55,8 @@ require("lazy").setup({
 		complete_spec,
 		treesitter_spec,
 		which_key_spec,
-		{ -- telescope
-			'nvim-telescope/telescope.nvim', tag = '0.1.8',
-      dependencies = { 'nvim-lua/plenary.nvim' }
-		},
+		telescope_tabs_spec,
+		telescope_spec,
 		{ 'neovim/nvim-lspconfig' },
 		{ "williamboman/mason.nvim" },
 		{ 'sainnhe/gruvbox-material' }, -- gruvbox-material
@@ -245,3 +244,20 @@ vim.opt.wrap = true
 vim.opt.breakindent = true
 -- vim.opt.showbreak = "␣␣␣" -- Adds a visual indicator for wrapped lines
 vim.opt.linebreak = true -- Prevents breaking words in the middle
+
+
+
+-- telescope
+require('telescope').setup {
+  defaults = {
+    file_previewer = require('telescope.previewers').vim_buffer_cat.new,
+    grep_previewer = require('telescope.previewers').vim_buffer_vimgrep.new,
+    qflist_previewer = require('telescope.previewers').vim_buffer_qflist.new,
+    -- Optional layout tweaks
+    layout_config = {
+      preview_cutoff = 0,  -- Always show preview
+      -- width = 0.99,
+      -- height = 0.99,
+    },
+  }
+}
