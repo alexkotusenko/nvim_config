@@ -139,7 +139,11 @@ require("lazy").setup({
 			-- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if you prefer nvim-web-devicons
 			-- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
 			lazy = false,
-		}
+		},
+		{ 'folke/twilight.nvim' },
+		{ 'dgox16/oldworld.nvim' },
+		{ 'Koalhack/darcubox-nvim' },
+		{ 'vague2k/vague.nvim' },
 
 
 
@@ -308,3 +312,4 @@ require("oil").setup({
     winbar = "%!v:lua.get_oil_winbar()",
   },
 })
+

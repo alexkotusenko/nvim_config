@@ -87,4 +87,6 @@ vim.keymap.set("n", "<leader>e", function()
   require("oil").toggle_float()
 end, { desc = "Toggle Oil floating window" })
 
+vim.keymap.set("n", "<leader>t", ":Twilight<CR>")
+
 
