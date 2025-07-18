@@ -25,33 +25,51 @@ if not vim.loop.fs_stat(lazypath) then
         })
 end
 vim.opt.rtp:prepend(lazypath)
+vim.opt.autochdir = true 
 
 -- harpoon save fn
-local function load_harpoon_list()
-    local file = io.open(harpoon_file, "r")
-    if file then
-        for line in file:lines() do
-            harpoon:list():append(line)
-        end
-        file:close()
-        print("Harpoon list loaded successfully.")
-    else
-        print("Error: Could not open file for reading.")
-    end
+-- local function load_harpoon_list()
+--     local file = io.open(harpoon_file, "r")
+--     if file then
+--         for line in file:lines() do
+--             harpoon:list():append(line)
+--         end
+--         file:close()
+--         print("Harpoon list loaded successfully.")
+--     else
+--         print("Error: Could not open file for reading.")
+--     end
+-- end
+
+
+-- Declare a global function to retrieve the current directory
+-- this is used to show the cwd in a bar in :Oil above the files
+function _G.get_oil_winbar()
+  local bufnr = vim.api.nvim_win_get_buf(vim.g.statusline_winid)
+  local dir = require("oil").get_current_dir(bufnr)
+  if dir then
+    return vim.fn.fnamemodify(dir, ":~")
+  else
+    -- If there is no current directory (e.g. over ssh), just show the buffer name
+    return vim.api.nvim_buf_get_name(0)
+  end
 end
 
-
 -- Define and load plugins
-local harpoon_spec = dofile(vim.fn.stdpath("config") .. "/harpoon.lua")
+-- local harpoon_spec = dofile(vim.fn.stdpath("config") .. "/harpoon.lua")
 local complete_spec = dofile(vim.fn.stdpath("config") .. "/complete.lua")
 local treesitter_spec = dofile(vim.fn.stdpath("config") .. "/treesitter.lua")
 local which_key_spec = dofile(vim.fn.stdpath("config") .. "/which_key.lua")
 local telescope_tabs_spec = dofile(vim.fn.stdpath("config") .. "/telescope_tabs.lua")
 local telescope_spec = dofile(vim.fn.stdpath("config") .. "/telescope.lua")
 
+
+
+
+
 require("lazy").setup({
   spec = {
-    harpoon_spec,
+    -- harpoon_spec,
 		complete_spec,
 		treesitter_spec,
 		which_key_spec,
@@ -72,6 +90,10 @@ require("lazy").setup({
 		{ 'tomasr/molokai' },
 		{ 'nvimdev/zephyr-nvim' },
 		{ 'navarasu/onedark.nvim' },
+		{ 'rafamadriz/neon' }, -- actually pretty pastel
+		{ 'nyoom-engineering/oxocarbon.nvim' },
+		{ 'shaeinst/roshnivim-cs' },
+		{ 'stevedylandev/darkmatter-nvim' },
     { -- SONOKAI THEME
       'sainnhe/sonokai',
       lazy = false,
@@ -101,11 +123,23 @@ require("lazy").setup({
 --   --   }
 --   -- }
 -- },
-{
-  "nomnivore/ollama.nvim",
-  dependencies = { "nvim-lua/plenary.nvim" },
-  cmd = { "Ollama", "OllamaModel", "OllamaServe", "OllamaServeStop" },
-}
+		{
+			"nomnivore/ollama.nvim",
+			dependencies = { "nvim-lua/plenary.nvim" },
+			cmd = { "Ollama", "OllamaModel", "OllamaServe", "OllamaServeStop" },
+		},
+
+		{ -- oil.nvim
+			'stevearc/oil.nvim',
+			---@module 'oil'
+			---@type oil.SetupOpts
+			opts = {},
+			-- Optional dependencies
+			dependencies = { { "echasnovski/mini.icons", opts = {} } },
+			-- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if you prefer nvim-web-devicons
+			-- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
+			lazy = false,
+		}
 
 
 
@@ -237,15 +271,13 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = function() end
 
 -- set colorscheme
 -- alternatives: molokai, sonokai
-vim.cmd.colorscheme("sonokai")
+vim.cmd.colorscheme("moonfly")
 
 -- proper wrapping
 vim.opt.wrap = true
 vim.opt.breakindent = true
 -- vim.opt.showbreak = "␣␣␣" -- Adds a visual indicator for wrapped lines
 vim.opt.linebreak = true -- Prevents breaking words in the middle
-
-
 
 -- telescope
 require('telescope').setup {
@@ -259,5 +291,20 @@ require('telescope').setup {
       -- width = 0.99,
       -- height = 0.99,
     },
-  }
+  },
+	pickers = {
+		colorscheme = {
+			enable_preview = true
+		}
+	}
 }
+
+require("oil").setup({
+  -- Oil will take over directory buffers (e.g. `vim .` or `:e src/`)
+  -- Set to false if you want some other plugin (e.g. netrw) to open when you edit directories.
+	default_file_explorer = true, -- prevent oil from hijacking :e
+
+  win_options = {
+    winbar = "%!v:lua.get_oil_winbar()",
+  },
+})

@@ -1,29 +1,16 @@
 
-local harpoon = require("harpoon")
 local remap = vim.keymap.set
 
--- open file explorer
--- local file_explorer_fn = ":Lexplore<CR>"
--- local file_explorer_fn = ":Telescope find_files<CR>"
-vim.keymap.set("n", "<leader>e", function() 
-	require("telescope.builtin").find_files()
-end, { noremap = true })
-
--- overrides lazy menu
-remap("n", "l", function()
-        harpoon.ui:toggle_quick_menu(harpoon:list())
-end)
-
-remap("n", "<leader>a", function()
-        harpoon:list():add()
-        vim.notify("Pinned!", 1)
-end)
+-- remap("n", "<leader>a", function()
+--         harpoon:list():add()
+--         vim.notify("Pinned!", 1)
+-- end)
 
 -- overrides code actions
-remap("n", "<leader>cc", function()
-        harpoon:list():clear()
-        vim.notify("All buffers unpinned!", 1)
-end)
+-- remap("n", "<leader>cc", function()
+--         harpoon:list():clear()
+--         vim.notify("All buffers unpinned!", 1)
+-- end)
 
 -- switch tabs
 remap("n", "\\[", ":tabprev<CR>", { noremap = true })
@@ -50,15 +37,6 @@ remap("n", "<C-]>", ":wincmd l<CR>", {noremap=true})
 remap("n", "<C-[>", ":wincmd h<CR>", {noremap=true})
 
 
-
-
--- dump
-remap("n", "<leader>d", function()
-    vim.cmd("tabnew") -- Create a new buffer
-    vim.cmd("e ~/system/THE_DUMP.txt") -- Load THE_DUMP.txt into the new buffer
-    vim.cmd("normal! G") -- Jump to the end of the file
-    vim.cmd("normal! o") -- Create a new line and enter insert mode
-end, { noremap = true, silent = true })
 
 
 -- search buffers
@@ -93,3 +71,20 @@ end, { noremap = true, silent = true })
 remap("n", "st", function()
 	require('telescope-tabs').list_tabs()
 end, {noremap = true, silent = true, desc = "List open tabs in Telescope"})
+
+-- I DO NOT USE THE REGULAR hjkl KEYS!!
+-- I USE ARROWS!
+remap("n", "j", "'")
+remap("n", "h", "")
+remap("n", "k", "")
+remap("n", "l", "")
+
+
+-- use oil for file management
+-- usually, if you're say in /tmp, and you want to edit a file in ~/.config, and if you have an alias that opens that file in ~/.config, when you run :e, you get shown the files in /tmp, which is inconventient. 
+-- using :Oil uses the file the currently edited file is in
+vim.keymap.set("n", "<leader>e", function()
+  require("oil").toggle_float()
+end, { desc = "Toggle Oil floating window" })
+
+
