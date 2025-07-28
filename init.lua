@@ -56,20 +56,19 @@ function _G.get_oil_winbar()
 end
 
 -- Define and load plugins
--- local harpoon_spec = dofile(vim.fn.stdpath("config") .. "/harpoon.lua")
-local complete_spec = dofile(vim.fn.stdpath("config") .. "/complete.lua")
-local treesitter_spec = dofile(vim.fn.stdpath("config") .. "/treesitter.lua")
-local which_key_spec = dofile(vim.fn.stdpath("config") .. "/which_key.lua")
-local telescope_tabs_spec = dofile(vim.fn.stdpath("config") .. "/telescope_tabs.lua")
-local telescope_spec = dofile(vim.fn.stdpath("config") .. "/telescope.lua")
-
-
-
+local source_file = function(arg1)
+	return dofile(vim.fn.stdpath("config") .. arg1)
+end
+local treesitter_spec = source_file("/treesitter.lua")
+local which_key_spec = source_file("/which_key.lua")
+local telescope_tabs_spec = source_file("/telescope_tabs.lua")
+local telescope_spec = source_file("/telescope.lua")
+local complete_spec = source_file("/complete.lua")
 
 
 require("lazy").setup({
   spec = {
-    -- harpoon_spec,
+		-- harpoon_spec,
 		complete_spec,
 		treesitter_spec,
 		which_key_spec,
@@ -106,23 +105,7 @@ require("lazy").setup({
     end
 		},
 		{ 'dylanaraps/wal.vim' }, -- for creating your own theme
--- use the lua one instead
--- { "github/copilot.vim" },
--- { "giuxtaposition/blink-cmp-copilot" },
-
--- {
---   "zbirenbaum/copilot.lua",
---   cmd = "Copilot",
---   event = "InsertEnter",
---   config = function()
---     require("copilot").setup({})
---   end,
---   -- suggestion = {
---   --   keymap = {
---   --       accept = "<C-k>"
---   --   }
---   -- }
--- },
+		{ 'oonamo/ef-themes.nvim' },
 		{
 			"nomnivore/ollama.nvim",
 			dependencies = { "nvim-lua/plenary.nvim" },
@@ -145,9 +128,12 @@ require("lazy").setup({
 		{ 'Koalhack/darcubox-nvim' },
 		{ 'vague2k/vague.nvim' },
 
-
-
-
+		-- marks
+		{
+    '2kabhishek/markit.nvim',
+    -- config = load_config('tools.marks'),
+    event = { 'BufReadPre', 'BufNewFile' },
+		},
   },
 }, {})
 
@@ -236,11 +222,6 @@ require("rose-pine").setup({
 
 require("mason").setup()
 
--- Import key mappings from keymaps.lua
--- you need to do this for the file to be found from any folder, not just ~/.config/nvim
-local keymaps_path = vim.fn.stdpath("config") .. "/keymaps.lua"
-dofile(keymaps_path)
-
 -- configure LSPs
 local lspconfig = require("lspconfig")
 lspconfig.rust_analyzer.setup({
@@ -274,8 +255,8 @@ require("ollama").setup({
 vim.lsp.handlers["textDocument/publishDiagnostics"] = function() end
 
 -- set colorscheme
--- alternatives: molokai, sonokai
-vim.cmd.colorscheme("moonfly")
+-- alternatives: molokai, sonokai, wildcharm, ef-cherie
+vim.cmd.colorscheme("wildcharm")
 
 -- proper wrapping
 vim.opt.wrap = true
@@ -303,6 +284,8 @@ require('telescope').setup {
 	}
 }
 
+
+-- Set up oil
 require("oil").setup({
   -- Oil will take over directory buffers (e.g. `vim .` or `:e src/`)
   -- Set to false if you want some other plugin (e.g. netrw) to open when you edit directories.
@@ -313,3 +296,45 @@ require("oil").setup({
   },
 })
 
+require('markit').setup {
+  -- whether to map keybinds or not. default true
+  default_mappings = true,
+  -- which builtin marks to show. default {}
+  builtin_marks = { ".", "<", ">", "^" },
+  -- whether movements cycle back to the beginning/end of buffer. default true
+  cyclic = true,
+  -- whether the shada file is updated after modifying uppercase marks. default false
+  force_write_shada = false,
+  -- how often (in ms) to redraw signs/recompute mark positions.
+  -- higher value means better performance but may cause visual lag,
+  -- while lower value may cause performance penalties. default 150.
+  refresh_interval = 150,
+  -- sign priorities for each type of mark - builtin marks, uppercase marks, lowercase
+  -- marks, and bookmarks.
+  -- can be either a table with all/none of the keys, or a single number, in which case
+  -- the priority applies to all marks.
+  -- default 10.
+  sign_priority = { lower=10, upper=15, builtin=8, bookmark=20 },
+  -- disables mark tracking for specific filetypes. default {}
+  excluded_filetypes = {},
+  -- disables mark tracking for specific buftypes. default {}
+  excluded_buftypes = {},
+  -- marks.nvim allows you to configure up to 10 bookmark groups, each with its own
+  -- sign/virttext. Bookmarks can be used to group together positions and quickly move
+  -- across multiple buffers. default sign is '!@#$%^&*()' (from 0 to 9), and
+  -- default virt_text is "".
+  bookmark_0 = {
+    sign = "⚑",
+    -- virt_text = "hello world",
+    -- explicitly prompt for a virtual line annotation when setting a bookmark from this group.
+    -- defaults to false.
+    annotate = true,
+  },
+  mappings = {}
+}
+
+
+-- Import key mappings from keymaps.lua
+-- you need to do this for the file to be found from any folder, not just ~/.config/nvim
+local keymaps_path = vim.fn.stdpath("config") .. "/keymaps.lua"
+dofile(keymaps_path)

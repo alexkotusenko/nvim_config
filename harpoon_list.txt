@@ -2,4 +2,3 @@ harpoon.lua
 init.lua
 /tmp
 /tmp/dne
-aaa

@@ -90,3 +90,7 @@ end, { desc = "Toggle Oil floating window" })
 vim.keymap.set("n", "<leader>t", ":Twilight<CR>")
 
 
+-- marks
+-- vim.keymap.del("n", "M")
+-- vim.keymap.set("n", "m", "lua require('markit').toggle_mark()")
+
