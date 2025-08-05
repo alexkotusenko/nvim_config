@@ -94,3 +94,15 @@ vim.keymap.set("n", "<leader>t", ":Twilight<CR>")
 -- vim.keymap.del("n", "M")
 -- vim.keymap.set("n", "m", "lua require('markit').toggle_mark()")
 
+-- overlook
+vim.keymap.set("n", "<leader>od", require("overlook.api").peek_definition, { desc = "Peek definition" })
+vim.keymap.set("n", "<leader>op", require("overlook.api").peek_cursor, { desc = "Peek cursor" })
+vim.keymap.set("n", "<leader>ou", require("overlook.api").restore_popup, { desc = "Restore last popup" })
+vim.keymap.set("n", "<leader>oU", require("overlook.api").restore_all_popups, { desc = "Restore all popups" })
+vim.keymap.set("n", "<leader>oc", require("overlook.api").close_all, { desc = "Close all popups" })
+vim.keymap.set("n", "<leader>os", require("overlook.api").open_in_split, { desc = "Open popup in split" })
+vim.keymap.set("n", "<leader>ov", require("overlook.api").open_in_vsplit, { desc = "Open popup in vsplit" })
+vim.keymap.set("n", "<leader>ot", require("overlook.api").open_in_tab, { desc = "Open popup in tab" })
+vim.keymap.set("n", "<leader>oo", require("overlook.api").open_in_original_window, { desc = "Open popup in current window" })
+
+

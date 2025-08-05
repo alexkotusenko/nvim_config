@@ -23,6 +23,7 @@
   "oldworld.nvim": { "branch": "main", "commit": "d0af80cf6bd5d17789cd1214a8054fe1cf23fc22" },
   "ollama.nvim": { "branch": "main", "commit": "45e58779fecde7ac5b8f62800bbe7180d4b48507" },
   "onedark.nvim": { "branch": "master", "commit": "11de4da47f3e69cb70c3ae9816bd8af166cbe121" },
+  "overlook.nvim": { "branch": "master", "commit": "8a9ab48f1acb1eb250db75630df9ec74ba1fd820" },
   "oxocarbon.nvim": { "branch": "main", "commit": "1dc7b7ea9df60edd9547b667fd1f789ce9f028fb" },
   "plenary.nvim": { "branch": "master", "commit": "857c5ac632080dba10aae49dba902ce3abf91b35" },
   "roshnivim-cs": { "branch": "main", "commit": "94e77787c0380fed9944e6f57c3db00e79d69fdb" },

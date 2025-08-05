@@ -111,7 +111,10 @@ require("lazy").setup({
 			dependencies = { "nvim-lua/plenary.nvim" },
 			cmd = { "Ollama", "OllamaModel", "OllamaServe", "OllamaServeStop" },
 		},
-
+		{
+			"WilliamHsieh/overlook.nvim",
+			opts = {},
+		},
 		{ -- oil.nvim
 			'stevearc/oil.nvim',
 			---@module 'oil'
@@ -338,3 +341,14 @@ require('markit').setup {
 -- you need to do this for the file to be found from any folder, not just ~/.config/nvim
 local keymaps_path = vim.fn.stdpath("config") .. "/keymaps.lua"
 dofile(keymaps_path)
+
+--- override automatic line breaks for comments
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "*",
+  callback = function()
+    vim.opt_local.formatoptions:remove({ "c" })
+  end,
+})
+
+
+
