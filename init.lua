@@ -367,8 +367,8 @@ looseleaf.setup({
 		rust = "rust_scratchpad.txt",
 		ai = "ai_scratchpad.txt",
 		dump = "dump_scratchpad.txt",
+		all = "./",
 	},
-	-- special = {"a", "b"}, -- rejected
 })
 -- custom plugin - looseleaf end
 
