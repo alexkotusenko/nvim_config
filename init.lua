@@ -362,11 +362,16 @@ vim.api.nvim_create_autocmd("FileType", {
 local looseleaf = require("looseleaf")
 looseleaf.setup({
 	dir = "~/tmp/scratchpad/", -- custom scratchpad directory
-	special = {
-		-- key-value pairs
+	special = { -- key-value pairs
+		-- in the folder
 		rust = "rust_scratchpad.txt",
 		ai = "ai_scratchpad.txt",
 		dump = "dump_scratchpad.txt",
+		
+		-- symlinks
+		q = "q", -- all questions (folder symlink)
+		genq = "genq.txt", -- general questions (file symlink)
+		-- all
 		all = "./",
 	},
 })
