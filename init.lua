@@ -12,6 +12,7 @@ vim.o.shiftwidth = 2 -- Size of an indent
 vim.o.tabstop = 2 -- Number of spaces tabs count for
 vim.o.softtabstop = 2 -- Number of spaces in tab when editin
 
+
 -- Initialize LazyVim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -84,6 +85,7 @@ require("lazy").setup({
 		{ 'tiagovla/tokyodark.nvim' },
 		{ 'sponkurtus2/angelic.nvim' },
 		{ 'bluz71/vim-moonfly-colors' }, -- amazing charcoal theme
+		{ 'sainnhe/edge' },
 		{ 'ficcdaf/ashen.nvim' },
 		{ 'projekt0n/github-nvim-theme' },
 		{ 'tomasr/molokai' },
@@ -93,6 +95,7 @@ require("lazy").setup({
 		{ 'nyoom-engineering/oxocarbon.nvim' },
 		{ 'shaeinst/roshnivim-cs' },
 		{ 'stevedylandev/darkmatter-nvim' },
+		{ 'srcery-colors/srcery-vim' }, -- nice earthy theme
     { -- SONOKAI THEME
       'sainnhe/sonokai',
       lazy = false,
@@ -137,6 +140,8 @@ require("lazy").setup({
     -- config = load_config('tools.marks'),
     event = { 'BufReadPre', 'BufNewFile' },
 		},
+		-- my plugins
+		{ "alexkotusenko/looseleaf" },
   },
 }, {})
 
@@ -259,7 +264,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = function() end
 
 -- set colorscheme
 -- alternatives: molokai, sonokai, wildcharm, ef-cherie
-vim.cmd.colorscheme("wildcharm")
+vim.cmd.colorscheme("srcery")
 
 -- proper wrapping
 vim.opt.wrap = true
@@ -351,4 +356,19 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 
+
+-- custom plugin - looseleaf start
+-- vim.opt.runtimepath:append("~/projects/looseleaf.nvim")
+local looseleaf = require("looseleaf")
+looseleaf.setup({
+	dir = "~/tmp/scratchpad/", -- custom scratchpad directory
+	special = {
+		-- key-value pairs
+		rust = "rust_scratchpad.txt",
+		ai = "ai_scratchpad.txt",
+		dump = "dump_scratchpad.txt",
+	},
+	-- special = {"a", "b"}, -- rejected
+})
+-- custom plugin - looseleaf end
 

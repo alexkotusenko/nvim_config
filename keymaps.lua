@@ -17,6 +17,12 @@ remap("n", "\\[", ":tabprev<CR>", { noremap = true })
 remap("n", "\\]", ":tabnext<CR>", { noremap = true })
 remap("n", "\\\\", ":tabnew<CR>", { noremap = true })
 
+-- focus tabs / nagivating tabs
+remap("n", "\\w", ":wincmd k<CR>", {noremap=true})
+remap("n", "\\s", ":wincmd j<CR>", {noremap=true})
+remap("n", "\\a", ":wincmd h<CR>", {noremap=true})
+remap("n", "\\d", ":wincmd l<CR>", {noremap=true})
+
 -- `G` always goes back to the very last symbol
 remap("n", "G", "G$")
 
@@ -32,9 +38,9 @@ end, { noremap = true, silent = true })
 
 -- navigating tabs 
 -- left
-remap("n", "<C-]>", ":wincmd l<CR>", {noremap=true})
+-- remap("n", "<C-]>", ":wincmd l<CR>", {noremap=true})
 -- right
-remap("n", "<C-[>", ":wincmd h<CR>", {noremap=true})
+-- remap("n", "<C-[>", ":wincmd h<CR>", {noremap=true})
 
 
 
@@ -97,8 +103,8 @@ vim.keymap.set("n", "<leader>t", ":Twilight<CR>")
 -- overlook
 vim.keymap.set("n", "<leader>od", require("overlook.api").peek_definition, { desc = "Peek definition" })
 vim.keymap.set("n", "<leader>op", require("overlook.api").peek_cursor, { desc = "Peek cursor" })
-vim.keymap.set("n", "<leader>ou", require("overlook.api").restore_popup, { desc = "Restore last popup" })
-vim.keymap.set("n", "<leader>oU", require("overlook.api").restore_all_popups, { desc = "Restore all popups" })
+vim.keymap.set("n", "<leader>ou", require("overlook.api").restore_popup, { desc = "Undo (restore) last popup" })
+vim.keymap.set("n", "<leader>oU", require("overlook.api").restore_all_popups, { desc = "Undo (restore) all popups" })
 vim.keymap.set("n", "<leader>oc", require("overlook.api").close_all, { desc = "Close all popups" })
 vim.keymap.set("n", "<leader>os", require("overlook.api").open_in_split, { desc = "Open popup in split" })
 vim.keymap.set("n", "<leader>ov", require("overlook.api").open_in_vsplit, { desc = "Open popup in vsplit" })
