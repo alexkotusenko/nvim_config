@@ -17,7 +17,7 @@ remap("n", "\\[", ":tabprev<CR>", { noremap = true })
 remap("n", "\\]", ":tabnext<CR>", { noremap = true })
 remap("n", "\\\\", ":tabnew<CR>", { noremap = true })
 
--- focus tabs / nagivating tabs
+-- focus window / nagivating windows
 remap("n", "\\w", ":wincmd k<CR>", {noremap=true})
 remap("n", "\\s", ":wincmd j<CR>", {noremap=true})
 remap("n", "\\a", ":wincmd h<CR>", {noremap=true})
@@ -84,6 +84,20 @@ remap("n", "j", "'")
 remap("n", "h", "")
 remap("n", "k", "")
 remap("n", "l", "")
+
+-- looseleaf
+-- _l_ooseleaf _s_plit _s_pecial
+remap("n", "lss", function()
+	local name = vim.fn.input("-> :")
+  if name ~= "" then
+    require("looseleaf").split({ args = ":" .. name })
+  end
+end, { desc = "Open special looseleaf" })
+-- looseleaf new
+remap("n", "ln", function()
+	vim.cmd("tabnew")
+	require("looseleaf").new({})
+end, { desc = "New Looseleaf in new tab" })
 
 
 -- use oil for file management
